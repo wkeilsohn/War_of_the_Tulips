@@ -1,1 +1,41 @@
+# Project Specific:
 Images/
+
+
+# From Template: https://github.com/github/gitignore/blob/master/C%2B%2B.gitignore
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# https://gist.github.com/stuhacking/4240230479dbfc8d9bb8b2e4099f38c7
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
