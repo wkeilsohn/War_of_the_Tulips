@@ -11,6 +11,7 @@ Pong-like game depicting the struggle between and bee and a wasp over a tulip.
 
 - SDL Documentation
 - Lazy Foo' Productions
+- "Let's Make a Game" by Avery Reed
 
 
 
