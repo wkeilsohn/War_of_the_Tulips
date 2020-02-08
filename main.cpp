@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <string.h>
 
 // Import SDL
 #include <SDL2/SDL.h>
@@ -9,11 +10,10 @@
 
 using namespace std;
 
-// To run test: g++ main.cpp -g -pedantic -o Test -lSDL2
+// To run test: g++ *.cpp -g -pedantic -o Test -lSDL2
 // ./Test
 int main()
 {
-    //cout << "Hello World" << endl;
-    Game g;
+    Game g("War of the Tulips", 950, 1000);
     return 0;
 }

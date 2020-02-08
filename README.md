@@ -1,6 +1,6 @@
 # War of the Tulips
 
-Pong-like game depicting the struggle between and bee and a wasp over a tulip.
+Pong-like game depicting the struggle between a bee and a wasp over a tulip.
 
 ## Libraries and Other Usefull Programs:
 
@@ -10,6 +10,7 @@ Pong-like game depicting the struggle between and bee and a wasp over a tulip.
 ## Citations:
 
 - SDL Documentation
+- SDL Wiki
 - Lazy Foo' Productions
 - "Let's Make a Game" by Avery Reed
 

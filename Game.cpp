@@ -1,12 +1,16 @@
 #include "Game.hpp"
 
-Game::Game()
+Game::Game(string title, int width, int height)
 {
-    SDL_Init(0);
-    SDL_CreateWindowAndRenderer(360, 240, 0, &win, &ren);
-    SDL_SetWindowTitle(win, "War of the Tulips");
+
+    sc_wdth = width;
+    sc_hth = height;
+
+    SDL_Init(SDL_INIT_EVERYTHING);
+    SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
+    SDL_SetWindowTitle(win, title.c_str());
     game_running = true;
-    count = 0;
+    count = 0; // In-game Clock
     loop();
 }
 
@@ -33,13 +37,8 @@ void Game::loop()
         
 
         render();
-//        input();
+        input();
 //        update();
-
-        if (count > 10)
-        {
-            game_running = false;
-        }
         
     }
     
@@ -48,11 +47,11 @@ void Game::loop()
 void Game::render()
 {
 
-    SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
+    SDL_SetRenderDrawColor(ren, 0, 0, sc_wdth, sc_hth);
     SDL_Rect rect;
     rect.x = rect.y=0;
-    rect.w = 360;
-    rect.h = 240;
+    rect.w = sc_wdth;
+    rect.h = sc_hth;
     SDL_RenderFillRect(ren, &rect);
 
     frame_count++;
@@ -66,3 +65,41 @@ void Game::render()
     SDL_RenderPresent(ren);
     
 }
+
+void Game::input()
+{
+    SDL_Event e;
+
+    while(SDL_PollEvent( &e) != 0)
+    {
+        if(e.type == SDL_QUIT)
+        {
+            game_running = false;
+        }
+        else
+        {
+            switch (e.key.keysym.sym)
+            {
+            case SDLK_ESCAPE:
+                game_running = false;
+                break;
+            case SDLK_f:
+                SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+                SDL_DisplayMode D;
+                SDL_GetCurrentDisplayMode(0, &D);
+                sc_wdth = D.w;
+                sc_hth = D.h;
+            default:
+                break;
+            }
+        }
+    }
+}
+
+
+/*
+void Game::update()
+{
+    // Add items to screen.
+}
+*/
