@@ -20,17 +20,19 @@ class Pics
 
         void installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
+        // Opening:
+        void renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
+        // Main Game:
+
+        // Event:
+
+        // Etc.:
         map<int, string> files;
 
     private:
         vector<string> images;
         string path;
-
-
 };
-
-
-
 
 #endif // PICS_H

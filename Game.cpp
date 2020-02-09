@@ -60,10 +60,8 @@ void Game::render()
     p.installTulips(sc_wdth, sc_hth, *ren);
 
     // /// Adds the images:
-    /*SDL_Surface* title_surf = IMG_Load(p.files[0].c_str());
-    SDL_Texture* title_text = SDL_CreateTextureFromSurface(ren, title_surf);
-    SDL_RenderCopy(ren, title_text, NULL, NULL);
-    SDL_RenderPresent(ren);*/
+    // Just for now, let's test with the title screen:
+    p.renderTitle(sc_wdth, sc_hth, *ren);
 
     // Determins Rendering Operation
     frame_count++;
@@ -71,7 +69,7 @@ void Game::render()
 
     if (timer_fps < (1000 / 60)) // Counts/Measures time.
     {
-        SDL_Delay((1000 / 60) - timer_fps); // Dtermines frame rate...in a round about sort of way.
+        SDL_Delay((1000 / 60) - timer_fps); // Determines frame rate...in a round about sort of way.
     }
 
     SDL_RenderPresent(ren);
