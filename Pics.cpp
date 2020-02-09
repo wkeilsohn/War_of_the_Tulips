@@ -68,3 +68,74 @@ void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
     SDL_Texture* title_text = SDL_CreateTextureFromSurface(&render, title_surf);
     SDL_RenderCopy(&render, title_text, NULL, &title);
 }
+
+void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
+{
+    int lft_thrd = sc_wdth / 3;
+    int rgt_thrd = sc_wdth - lft_thrd;
+
+    int top = sc_hth / 4;
+    int fill_hth = sc_hth / 2;
+
+    SDL_Rect bee_rect;
+    bee_rect.x = 0;
+    bee_rect.y = top;
+    bee_rect.h = fill_hth;
+    bee_rect.w = lft_thrd;
+
+    SDL_Rect wasp_rect;
+    wasp_rect.w = lft_thrd;
+    wasp_rect.h = fill_hth;
+    wasp_rect.x = rgt_thrd;
+    wasp_rect.y = top;
+
+    SDL_Surface* bee_surface = IMG_Load(files[1].c_str());
+    SDL_Surface* wasp_surface = IMG_Load(files[8].c_str());
+
+    SDL_Texture* bee_text = SDL_CreateTextureFromSurface(&render, bee_surface);
+    SDL_Texture* wasp_text = SDL_CreateTextureFromSurface(&render, wasp_surface);
+
+    SDL_RenderCopy(&render, bee_text, NULL, &bee_rect);
+    SDL_RenderCopy(&render, wasp_text, NULL, &wasp_rect);
+}
+
+void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
+{
+    int lft_thrd = sc_wdth / 3;
+    int rgt_thrd = sc_wdth - lft_thrd;
+
+    int top = sc_hth / 4;
+    int fill_hth = sc_hth / 2;
+
+    SDL_Rect bee_rect;
+    bee_rect.x = 0;
+    bee_rect.y = top;
+    bee_rect.h = fill_hth;
+    bee_rect.w = lft_thrd;
+
+    SDL_Rect wasp_rect;
+    wasp_rect.w = lft_thrd;
+    wasp_rect.h = fill_hth;
+    wasp_rect.x = rgt_thrd;
+    wasp_rect.y = top;
+
+    int b, w;
+
+    if(victor)
+    {
+        b = 3;
+        w = 7;
+    } else {
+        b = 2;
+        w = 6;
+    }
+
+    SDL_Surface* bee_surface = IMG_Load(files[b].c_str());
+    SDL_Surface* wasp_surface = IMG_Load(files[w].c_str());
+
+    SDL_Texture* bee_text = SDL_CreateTextureFromSurface(&render, bee_surface);
+    SDL_Texture* wasp_text = SDL_CreateTextureFromSurface(&render, wasp_surface);
+
+    SDL_RenderCopy(&render, bee_text, NULL, &bee_rect);
+    SDL_RenderCopy(&render, wasp_text, NULL, &wasp_rect);
+}

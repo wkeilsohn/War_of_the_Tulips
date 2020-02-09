@@ -24,8 +24,14 @@ class Pics
         void renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
         // Main Game:
+        void addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render);
+//        void addBall(int sc_wdth, int sc_hth, SDL_Renderer& render);
+
 
         // Event:
+        void Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor);
+
+//      void endGame(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
         // Etc.:
         map<int, string> files;
