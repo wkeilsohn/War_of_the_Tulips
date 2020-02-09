@@ -19,7 +19,7 @@ Game::Game(string title, int width, int height)
 
 Game::~Game() 
 {
-    p.~Pics();
+//    p.~Pics();  // You can not delete what doesn't exist!
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
     SDL_Quit();
