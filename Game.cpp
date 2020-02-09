@@ -56,11 +56,14 @@ void Game::render()
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     SDL_RenderClear(ren);
 
+    // /// Adds in the boarder Tulips:
+    p.installTulips(sc_wdth, sc_hth, *ren);
+
     // /// Adds the images:
-    SDL_Surface* title_surf = IMG_Load(p.files[0].c_str());
+    /*SDL_Surface* title_surf = IMG_Load(p.files[0].c_str());
     SDL_Texture* title_text = SDL_CreateTextureFromSurface(ren, title_surf);
     SDL_RenderCopy(ren, title_text, NULL, NULL);
-    SDL_RenderPresent(ren);
+    SDL_RenderPresent(ren);*/
 
     // Determins Rendering Operation
     frame_count++;

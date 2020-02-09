@@ -18,7 +18,9 @@ class Pics
         Pics();
         ~Pics();
 
-        // Adjust images
+        void installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render);
+
+
         map<int, string> files;
 
     private:
