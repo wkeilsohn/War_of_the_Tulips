@@ -4,8 +4,10 @@
 
 // Import SDL
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 // Include Game Files
+#include "Pics.hpp"
 #include "Game.hpp"
 
 using namespace std;
@@ -14,6 +16,6 @@ using namespace std;
 // ./Test
 int main()
 {
-    Game g("War of the Tulips", 950, 1000);
+    Game g("War of the Tulips", 950, 975);
     return 0;
 }

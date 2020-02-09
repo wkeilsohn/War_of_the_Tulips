@@ -1,3 +1,4 @@
+//#include "Pics.hpp"
 #include "Game.hpp"
 
 Game::Game(string title, int width, int height)
@@ -5,6 +6,8 @@ Game::Game(string title, int width, int height)
 
     sc_wdth = width;
     sc_hth = height;
+
+    Pics p;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
@@ -16,6 +19,7 @@ Game::Game(string title, int width, int height)
 
 Game::~Game() 
 {
+    p.~Pics();
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
     SDL_Quit();
@@ -46,20 +50,25 @@ void Game::loop()
 
 void Game::render()
 {
+    // Add images to the screen:
 
-    SDL_SetRenderDrawColor(ren, 0, 0, sc_wdth, sc_hth);
-    SDL_Rect rect;
-    rect.x = rect.y=0;
-    rect.w = sc_wdth;
-    rect.h = sc_hth;
-    SDL_RenderFillRect(ren, &rect);
+    // /// Adds the background color:
+    SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
+    SDL_RenderClear(ren);
 
+    // /// Adds the images:
+    SDL_Surface* title_surf = IMG_Load(p.files[0].c_str());
+    SDL_Texture* title_text = SDL_CreateTextureFromSurface(ren, title_surf);
+    SDL_RenderCopy(ren, title_text, NULL, NULL);
+    SDL_RenderPresent(ren);
+
+    // Determins Rendering Operation
     frame_count++;
     int timer_fps = SDL_GetTicks() - last_frame;
 
-    if (timer_fps < (1000 / 60))
+    if (timer_fps < (1000 / 60)) // Counts/Measures time.
     {
-        SDL_Delay((1000 / 60) - timer_fps);
+        SDL_Delay((1000 / 60) - timer_fps); // Dtermines frame rate...in a round about sort of way.
     }
 
     SDL_RenderPresent(ren);

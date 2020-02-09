@@ -3,13 +3,19 @@
 
 #include <iostream>
 #include <string.h>
+#include <map>
 
 // SDL Requierments:
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+// Reliant Classes
+#include "Pics.hpp"
 
 using namespace std;
 
-class Game {
+class Game 
+{
 
     public:
         Game(string title, int width, int height);
@@ -18,6 +24,7 @@ class Game {
 //        void update();
         void render();
         void input();
+
     private:
         SDL_Renderer* ren;
         SDL_Window* win;
@@ -29,6 +36,8 @@ class Game {
 
         int sc_wdth, sc_hth;
         bool full;
+
+        Pics p;
 };
 
 #endif // GAME_H
