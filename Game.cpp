@@ -63,6 +63,9 @@ void Game::render()
     // Just for now, let's test with the title screen:
     p.renderTitle(sc_wdth, sc_hth, *ren);
 
+    // /// Push images to screen:
+    SDL_RenderPresent(ren);
+
     // Determins Rendering Operation
     frame_count++;
     int timer_fps = SDL_GetTicks() - last_frame;

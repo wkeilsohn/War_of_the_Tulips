@@ -24,6 +24,7 @@ Pics::~Pics()
 
 void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
+
     int h_quater = sc_hth / 4;
 
     SDL_Rect top_flow;
@@ -49,11 +50,11 @@ void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
     SDL_RenderCopy(&render, bottom_tulips_text, NULL, &bottom_flow);
     SDL_RenderCopy(&render, top_tulips_text, NULL, &top_flow);
 
-    SDL_RenderPresent(&render);
 }
 
 void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
+
     int mid_sec = sc_hth / 2; 
     int mid_hth = sc_hth - (3 * (sc_hth / 4));
 
@@ -66,5 +67,4 @@ void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
     SDL_Surface* title_surf = IMG_Load(files[0].c_str());
     SDL_Texture* title_text = SDL_CreateTextureFromSurface(&render, title_surf);
     SDL_RenderCopy(&render, title_text, NULL, &title);
-    SDL_RenderPresent(&render);
 }
