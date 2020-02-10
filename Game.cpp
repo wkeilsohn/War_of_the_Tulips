@@ -19,7 +19,6 @@ Game::Game(string title, int width, int height)
 
 Game::~Game() 
 {
-//    p.~Pics();  // You can not delete what doesn't exist!
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
     SDL_Quit();
@@ -36,7 +35,7 @@ void Game::loop()
         {
             last_time = last_frame;
             frame_count = 0;
-            count++;
+//            count++; // Not sure if this is worth keeping?
         }
         
 
@@ -53,9 +52,10 @@ void Game::render()
     // Add images to the screen:
 
     // /// Adds the background color:
-    SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     SDL_RenderClear(ren);
+    p.createBackground(*ren);
 
+    
     // /// Adds in the boarder Tulips:
     p.installTulips(sc_wdth, sc_hth, *ren);
 

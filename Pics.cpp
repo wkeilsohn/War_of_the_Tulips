@@ -4,17 +4,31 @@ Pics::Pics()
 {   
     IMG_Init(IMG_INIT_PNG);
 
-    path = "Images/Final/"; // Correct Address!
+
+    path1 = "Images/Drawn/"; // Correct Address!
     images = {"Title.png", "Bee1.png", "Bee2.png", "Bee3.png", "Grub.png", "Tulip1.png", "Wasp.png", "Wasp2.png", "Wasp3.png", "Top_Flowers.png", "Bottom_Flowers.png"};
 
     int index = 0;
 
     for(string i: images)
     {
-        string im_val = path + i;
+        string im_val = path1 + i;
         files[index] = im_val;
         index++;
     }
+
+    IMG_Init(IMG_INIT_JPG);
+
+    path2 = "Images/Additional/";
+    addons = {"Background.jpg"};
+
+    for(string j: addons)
+    {
+        string add_vals = path2 + j;
+        files[index] = add_vals;
+        index++;
+    }
+    
 }
 
 Pics::~Pics()
@@ -138,4 +152,11 @@ void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
 
     SDL_RenderCopy(&render, bee_text, NULL, &bee_rect);
     SDL_RenderCopy(&render, wasp_text, NULL, &wasp_rect);
+}
+
+void Pics::createBackground(SDL_Renderer& render)
+{
+    SDL_Surface* back_surf = IMG_Load(files[11].c_str());
+    SDL_Texture* back_text = SDL_CreateTextureFromSurface(&render, back_surf);
+    SDL_RenderCopy(&render, back_text, NULL, NULL); 
 }

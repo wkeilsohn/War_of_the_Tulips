@@ -34,11 +34,16 @@ class Pics
 //      void endGame(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
         // Etc.:
+        void createBackground(SDL_Renderer& render);
+
         map<int, string> files;
 
     private:
         vector<string> images;
-        string path;
+        string path1;
+
+        vector<string> addons;
+        string path2;
 };
 
 #endif // PICS_H

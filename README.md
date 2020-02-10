@@ -16,6 +16,12 @@ Pong-like game depicting the struggle between a bee and a wasp over a tulip.
 
 
 
-## Image Notes:
+## Media Notes:
 
-As I drew all the images for this project myself, I will not be including them in the git repository (at least not initially).
+For this project, I initially drew all of the images I intended to use. However, after begining to code, it became obvious that I would need additional materials. Therefore, while I still will not be including my own art (at least not initially) I can not take credit for the art I obtained from additional sources such as Upsplash and other royalty free sites. Please see below for a more exhustive list of media contributions. 
+
+## Media Contributions:
+
+- Parchment Paper Background by Ivan Gromov on Unsplash: https://tinyurl.com/tfzdxap
+
+*Works not listed above were most likely created by me. Please feel free to contact me with any questions.*
