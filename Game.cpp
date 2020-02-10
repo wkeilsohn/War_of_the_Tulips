@@ -60,8 +60,9 @@ void Game::render()
     p.installTulips(sc_wdth, sc_hth, *ren);
 
     // /// Adds the images:
-    // Just for now, let's test with the title screen:
+
     p.renderTitle(sc_wdth, sc_hth, *ren);
+//    p.addNormalCharacters(sc_wdth, sc_hth, *ren);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);

@@ -39,7 +39,7 @@ Pics::~Pics()
 void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
 
-    int h_quater = sc_hth / 4;
+    int h_quater = sc_hth / 8;
 
     SDL_Rect top_flow;
     top_flow.x = 0;
@@ -69,8 +69,8 @@ void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
 void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
 
-    int mid_sec = sc_hth / 2; 
-    int mid_hth = sc_hth - (3 * (sc_hth / 4));
+    int mid_sec = (6 * (sc_hth / 8)); 
+    int mid_hth = sc_hth - (7 * (sc_hth / 8));
 
     SDL_Rect title;
     title.x = 0;
@@ -85,11 +85,11 @@ void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
 
 void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
-    int lft_thrd = sc_wdth / 3;
+    int lft_thrd = sc_wdth / 6;
     int rgt_thrd = sc_wdth - lft_thrd;
 
-    int top = sc_hth / 4;
-    int fill_hth = sc_hth / 2;
+    int top = sc_hth / 8;
+    int fill_hth = (6 * (sc_hth / 8));
 
     SDL_Rect bee_rect;
     bee_rect.x = 0;
@@ -103,7 +103,7 @@ void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
     wasp_rect.x = rgt_thrd;
     wasp_rect.y = top;
 
-    SDL_Surface* bee_surface = IMG_Load(files[1].c_str());
+    SDL_Surface* bee_surface = IMG_Load(files[3].c_str());
     SDL_Surface* wasp_surface = IMG_Load(files[8].c_str());
 
     SDL_Texture* bee_text = SDL_CreateTextureFromSurface(&render, bee_surface);
@@ -115,11 +115,11 @@ void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
 
 void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
 {
-    int lft_thrd = sc_wdth / 3;
+    int lft_thrd = sc_wdth / 6;
     int rgt_thrd = sc_wdth - lft_thrd;
 
-    int top = sc_hth / 4;
-    int fill_hth = sc_hth / 2;
+    int top = sc_hth / 8;
+    int fill_hth = (6 * (sc_hth / 8));
 
     SDL_Rect bee_rect;
     bee_rect.x = 0;
@@ -137,7 +137,7 @@ void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
 
     if(victor)
     {
-        b = 3;
+        b = 1;
         w = 7;
     } else {
         b = 2;
@@ -159,4 +159,21 @@ void Pics::createBackground(SDL_Renderer& render)
     SDL_Surface* back_surf = IMG_Load(files[11].c_str());
     SDL_Texture* back_text = SDL_CreateTextureFromSurface(&render, back_surf);
     SDL_RenderCopy(&render, back_text, NULL, NULL); 
+}
+
+void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth)
+{
+    int ratio = 20;
+    int size_w = sc_wdth / ratio;
+    int size_h = sc_hth / ratio;
+
+    SDL_Rect ball;
+    ball.x = ball_x;
+    ball.y = ball_y;
+    ball.w = size_w;
+    ball.h = size_h;
+
+    SDL_Surface* ball_surface = IMG_Load(files[5].c_str());
+    SDL_Texture* ball_text = SDL_CreateTextureFromSurface(&render, ball_surface);
+    SDL_RenderCopy(&render, ball_text, NULL, &ball);
 }

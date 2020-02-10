@@ -25,7 +25,7 @@ class Pics
 
         // Main Game:
         void addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render);
-//        void addBall(int sc_wdth, int sc_hth, SDL_Renderer& render);
+        void addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth);
 
 
         // Event:
