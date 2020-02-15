@@ -1,4 +1,3 @@
-//#include "Pics.hpp"
 #include "Game.hpp"
 
 Game::Game(string title, int width, int height)
@@ -7,14 +6,22 @@ Game::Game(string title, int width, int height)
     sc_wdth = width;
     sc_hth = height;
 
-    Pics p;
+    Events ev;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
     SDL_SetWindowTitle(win, title.c_str());
     game_running = true;
     count = 0; // In-game Clock
-    loop();
+
+    // Set Starting values
+    team = true;
+    event = 0;
+    bee_score = 0;
+    wasp_score = 0;
+
+
+    loop(); // Begin Game.
 }
 
 Game::~Game() 
@@ -42,6 +49,11 @@ void Game::loop()
         render();
         input();
 //        update();
+
+        if(event > 2)
+        {
+            game_running = false;
+        }
         
     }
     
@@ -53,16 +65,15 @@ void Game::render()
 
     // /// Adds the background color:
     SDL_RenderClear(ren);
-    p.createBackground(*ren);
+    ev.p.createBackground(*ren);
 
     
     // /// Adds in the boarder Tulips:
-    p.installTulips(sc_wdth, sc_hth, *ren);
+    ev.p.installTulips(sc_wdth, sc_hth, *ren);
 
-    // /// Adds the images:
 
-    p.renderTitle(sc_wdth, sc_hth, *ren);
-//    p.addNormalCharacters(sc_wdth, sc_hth, *ren);
+    // /// Decides what to show based on user input:
+    ev.callTitle(sc_wdth, sc_hth, *ren, event);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);
@@ -103,6 +114,37 @@ void Game::input()
                 SDL_GetCurrentDisplayMode(0, &D);
                 sc_wdth = D.w;
                 sc_hth = D.h;
+                break;
+            case SDLK_SPACE:
+                event++; // You can quit the game (in addition to passing the title) by hitting the space bar.
+                break;
+            case SDLK_w:
+                team = false;
+                event++; // Cheating prevention.
+                break;
+            case SDLK_b:
+                team = true;
+                event++;
+                break;
+            case SDLK_y:
+                if(event == 2)
+                {
+                    event = 0; // Reset game
+                    bee_score = 0;
+                    wasp_score = 0;
+                }else
+                {
+                    event++;
+                }
+                break;
+            case SDLK_n:
+                game_running = false;
+                break;
+            case SDLK_UP:
+                player_paddle_x = player_paddle_x + paddle_speed;
+                break;
+            case SDLK_DOWN:
+                player_paddle_x = player_paddle_x - paddle_speed;
             default:
                 break;
             }
@@ -114,6 +156,6 @@ void Game::input()
 /*
 void Game::update()
 {
-    // Add items to screen.
+    // Add points and update variables.
 }
 */

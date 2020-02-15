@@ -44,6 +44,7 @@ class Pics
 
         vector<string> addons;
         string path2;
+
 };
 
 #endif // PICS_H

@@ -10,7 +10,8 @@
 #include <SDL2/SDL_image.h>
 
 // Reliant Classes
-#include "Pics.hpp"
+//#include "Pics.hpp"
+#include "Events.hpp"
 
 using namespace std;
 
@@ -39,13 +40,15 @@ class Game
         bool full;
 
         // Image Management Variables:
-        Pics p;
+        Events ev;
 
         int ball_x, ball_y;
-        int bee_paddle_x, bee_paddle_y, wasp_paddle_x, wasp_paddle_y;
+        int player_paddle_x, player_paddle_y, enemy_paddle_x, enemy_paddle_y;
+        int paddle_speed;
 
         // Game Playe Management Variables:
         bool team;
+        int event;
         int bee_score, wasp_score;
 };
 

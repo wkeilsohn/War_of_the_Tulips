@@ -69,8 +69,8 @@ void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
 void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
 {
 
-    int mid_sec = (6 * (sc_hth / 8)); 
-    int mid_hth = sc_hth - (7 * (sc_hth / 8));
+    int mid_hth = sc_hth / 8;
+    int mid_sec = sc_hth - (2 * mid_hth);
 
     SDL_Rect title;
     title.x = 0;
@@ -89,7 +89,7 @@ void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
     int rgt_thrd = sc_wdth - lft_thrd;
 
     int top = sc_hth / 8;
-    int fill_hth = (6 * (sc_hth / 8));
+    int fill_hth = sc_hth - (2 * top);
 
     SDL_Rect bee_rect;
     bee_rect.x = 0;
