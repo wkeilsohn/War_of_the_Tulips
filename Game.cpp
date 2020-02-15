@@ -50,7 +50,7 @@ void Game::loop()
         input();
 //        update();
 
-        if(event > 2)
+        if(event > 3)
         {
             game_running = false;
         }
@@ -87,7 +87,7 @@ void Game::render()
         SDL_Delay((1000 / 60) - timer_fps); // Determines frame rate...in a round about sort of way.
     }
 
-    SDL_RenderPresent(ren);
+    SDL_RenderClear(ren);
     
 }
 

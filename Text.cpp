@@ -19,3 +19,8 @@ void Text::gameOver(int again_val)
 {
 
 }
+
+int Text::teamSelection(int team_val)
+{
+    
+}
