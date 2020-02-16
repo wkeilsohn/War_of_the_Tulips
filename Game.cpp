@@ -7,6 +7,7 @@ Game::Game(string title, int width, int height)
     sc_hth = height;
 
     Events ev;
+    Text txt;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
@@ -42,13 +43,12 @@ void Game::loop()
         {
             last_time = last_frame;
             frame_count = 0;
-//            count++; // Not sure if this is worth keeping?
         }
         
 
         render();
         input();
-//        update();
+        update();
 
         if(event > 3)
         {
@@ -61,6 +61,7 @@ void Game::loop()
 
 void Game::render()
 {
+
     // Add images to the screen:
 
     // /// Adds the background color:
@@ -74,6 +75,7 @@ void Game::render()
 
     // /// Decides what to show based on user input:
     ev.callTitle(sc_wdth, sc_hth, *ren, event);
+    txt.teamSelection(sc_wdth, sc_hth, *ren, event);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);
@@ -88,7 +90,7 @@ void Game::render()
     }
 
     SDL_RenderClear(ren);
-    
+   
 }
 
 void Game::input()
@@ -153,9 +155,14 @@ void Game::input()
 }
 
 
-/*
+
 void Game::update()
 {
-    // Add points and update variables.
+    if(event <= 1 || event > 2)
+    {
+        event = event;
+    }else
+    {
+        event = event / 2;
+    }
 }
-*/

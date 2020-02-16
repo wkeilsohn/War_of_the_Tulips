@@ -1,6 +1,7 @@
 # Project Specific:
 Images/
 Music/
+Fonts/
 .vscode/
 *.code-workspace
 test

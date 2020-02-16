@@ -10,8 +10,8 @@
 #include <SDL2/SDL_image.h>
 
 // Reliant Classes
-//#include "Pics.hpp"
 #include "Events.hpp"
+#include "Text.hpp"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ class Game
         Game(string title, int width, int height);
         ~Game();
         void loop();
-//        void update();
+        void update();
         void render();
         void input();
 
@@ -41,6 +41,8 @@ class Game
 
         // Image Management Variables:
         Events ev;
+        Text txt;
+
 
         int ball_x, ball_y;
         int player_paddle_x, player_paddle_y, enemy_paddle_x, enemy_paddle_y;

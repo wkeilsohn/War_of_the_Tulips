@@ -23,5 +23,6 @@ For this project, I initially drew all of the images I intended to use. However,
 ## Media Contributions:
 
 - Parchment Paper Background by Ivan Gromov on Unsplash: https://tinyurl.com/tfzdxap
+- May Queen Regular (Font) by Divdie By Zero: https://www.1001fonts.com/may-queen-font.html 
 
 *Works not listed above were most likely created by me. Please feel free to contact me with any questions.*

@@ -7,6 +7,7 @@
 
 // Include SDL Libraries:
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
 using namespace std;
@@ -17,13 +18,12 @@ class Text
         Text();
         ~Text();
 
-        int teamSelection(int team_val);
+        void teamSelection(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
         void gameOver(int again_val);
         void displayScore(int score, bool team);
 
     private:
         string end_game;
-        string character_selection;
         string score;
 
         string keepScore(int score);
