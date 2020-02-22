@@ -13,6 +13,7 @@ Game::Game(string title, int width, int height)
     SDL_SetWindowTitle(win, title.c_str());
     game_running = true;
     count = 0; // In-game Clock
+    selection = 0;
 
     // Set Starting values
     team = true;
@@ -133,6 +134,8 @@ void Game::input()
                     event = 0; // Reset game
                     bee_score = 0;
                     wasp_score = 0;
+                    selection = 0;
+                    team = false;
                 }else
                 {
                     event++;
@@ -157,13 +160,18 @@ void Game::input()
 
 void Game::update()
 {
-    if(event <= 1 || event > 2)
+    int ev_dif = event - selection;
+
+    if(ev_dif >= 2)
     {
-        event = event;
+        event = event - 1;
     }else
     {
-        event = event / 2;
+        event = event;
     }
+
+    selection = event;
+
     event = ev.callEndGame(bee_score, wasp_score, event);
     cout << event << endl;
 }

@@ -50,7 +50,7 @@ class Game
 
         // Game Playe Management Variables:
         bool team;
-        int event;
+        int event, selection;
         int bee_score, wasp_score;
 };
 

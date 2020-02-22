@@ -26,12 +26,12 @@ class Pics
         // Main Game:
         void addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render);
         void addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth);
+        void addPaddels(bool team, int bee_paddle_x, int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_x, int wasp_paddle_y);
 
 
         // Event:
         void Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor);
 
-//      void endGame(int sc_wdth, int sc_hth, SDL_Renderer& render);
 
         // Etc.:
         void createBackground(SDL_Renderer& render);
