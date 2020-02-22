@@ -12,6 +12,7 @@
 
 // Reliant Classes
 #include "Pics.hpp"
+#include "Text.hpp"
 
 using namespace std;
 
@@ -20,16 +21,16 @@ class Events
     public:
         Events();
         ~Events();
-//        bool determineScreen(int sc_wdth, int sc_hth, SDL_Renderer& render, int ball_x, int ball_y, int bee_paddle_x, int bee_paddle_y, int wasp_paddle_x, int wasp_paddle_y, int team, int bee_score, int wasp_score);
 
         // Image Management Public:
         Pics p;
+        Text txt;
 
         // Major game Events:    
-        void callTitle(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
-//        void callPlayerChoice();
+        void callText(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
+        void showPoint(int sc_wdth, int sc_hth, SDL_Renderer& render, int event, int bee_score, int wasp_score);
         void callPoint();
-        void callEndGame(int bee_score, int wasp_score);
+        int callEndGame(int bee_score, int wasp_score, int event);
 
 
 };

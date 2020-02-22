@@ -18,18 +18,14 @@ class Text
         Text();
         ~Text();
 
-        void teamSelection(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
-        void gameOver(int again_val);
-        void displayScore(int score, bool team);
+        void teamSelection(int sc_wdth, int sc_hth, SDL_Renderer& render);
+        void gameOver(int sc_wdth, int sc_hth, SDL_Renderer& render);
+        void displayScore(int sc_wdth, int sc_hth, SDL_Renderer& render,  int bee_score, int wasp_score);
 
     private:
-        string end_game;
-        string score;
-
-        string keepScore(int score);
-
         SDL_Color color;
         TTF_Font* font;
+        TTF_Font* score_font;
 };
 
 

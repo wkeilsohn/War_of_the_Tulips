@@ -7,7 +7,6 @@ Game::Game(string title, int width, int height)
     sc_hth = height;
 
     Events ev;
-    Text txt;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
@@ -73,9 +72,9 @@ void Game::render()
     ev.p.installTulips(sc_wdth, sc_hth, *ren);
 
 
-    // /// Decides what to show based on user input:
-    ev.callTitle(sc_wdth, sc_hth, *ren, event);
-    txt.teamSelection(sc_wdth, sc_hth, *ren, event);
+    // /// Decides what to show:
+    ev.callText(sc_wdth, sc_hth, *ren, event);
+    ev.showPoint(sc_wdth, sc_hth, *ren, event, bee_score, wasp_score);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);
@@ -129,7 +128,7 @@ void Game::input()
                 event++;
                 break;
             case SDLK_y:
-                if(event == 2)
+                if(event == 3)
                 {
                     event = 0; // Reset game
                     bee_score = 0;
@@ -165,4 +164,6 @@ void Game::update()
     {
         event = event / 2;
     }
+    event = ev.callEndGame(bee_score, wasp_score, event);
+    cout << event << endl;
 }
