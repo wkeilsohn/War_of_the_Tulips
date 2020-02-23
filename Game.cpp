@@ -175,7 +175,7 @@ void Game::update()
 
     selection = event;
 
-    score = ev.callPoint(sc_wdth, bee_score, wasp_score, ball_x);
+    score = ev.callPoint(sc_wdth, bee_score, wasp_score, ball_x, sc_hth, *ren);
     bee_score = score[0];
     wasp_score = score[1];
 

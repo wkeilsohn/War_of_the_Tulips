@@ -163,9 +163,20 @@ void Pics::createBackground(SDL_Renderer& render)
 
 void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth)
 {
-    int ratio = 20;
-    int size_w = sc_wdth / ratio;
-    int size_h = sc_hth / ratio;
+    float ratio = (float)sc_hth / (float)sc_wdth;
+    int size = 30;
+    
+    int size_w = sc_wdth / size;
+    int size_h = sc_hth / size;
+
+    if(ratio > 1)
+    {
+        size_w = size_w * ratio;
+    }else
+    {
+        size_h = size_h / ratio;
+    }
+    
 
     SDL_Rect ball;
     ball.x = ball_x;
@@ -173,7 +184,7 @@ void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, in
     ball.w = size_w;
     ball.h = size_h;
 
-    SDL_Surface* ball_surface = IMG_Load(files[5].c_str());
+    SDL_Surface* ball_surface = IMG_Load(files[4].c_str());
     SDL_Texture* ball_text = SDL_CreateTextureFromSurface(&render, ball_surface);
     SDL_RenderCopy(&render, ball_text, NULL, &ball);
 }

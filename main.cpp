@@ -16,6 +16,6 @@ using namespace std;
 // ./Test
 int main()
 {
-    Game g("War of the Tulips", 950, 975);
+    Game g("War of the Tulips", 1000, 1000);
     return 0;
 }

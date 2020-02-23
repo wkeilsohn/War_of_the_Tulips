@@ -33,20 +33,24 @@ void Events::callText(int sc_wdth, int sc_hth, SDL_Renderer& render, int event)
     
 }
 
-vector<int> Events::callPoint(int sc_wdth, int bee_score, int wasp_score, int ball_x)
+vector<int> Events::callPoint(int sc_wdth, int bee_score, int wasp_score, int ball_x, int sc_hth, SDL_Renderer& render)
 {
 
     int side_1 = sc_wdth / 8;
     int side_2 = side_1 * 6;
 
     vector<int> score_vec;
+    bool victor = false;
 
     if(ball_x <= side_1)
     {
         bee_score++;
+        victor = true;
+        p.Victory(sc_wdth, sc_hth, render, victor);
     }else if(ball_x >= side_2)
     {
         wasp_score++;
+        p.Victory(sc_wdth, sc_hth, render, victor);
     }else
     {
         bee_score = bee_score;
@@ -54,6 +58,7 @@ vector<int> Events::callPoint(int sc_wdth, int bee_score, int wasp_score, int ba
     }
 
     score_vec = {bee_score, wasp_score};
+
     
     return score_vec;
 }
