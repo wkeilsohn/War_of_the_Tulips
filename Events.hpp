@@ -29,7 +29,7 @@ class Events
         // Major game Events:    
         void callText(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
         void showPoint(int sc_wdth, int sc_hth, SDL_Renderer& render, int event, int bee_score, int wasp_score);
-        void callPoint();
+        vector<int> callPoint(int sc_wdth, int bee_score, int wasp_score, int ball_x);
         int callEndGame(int bee_score, int wasp_score, int event);
 
 

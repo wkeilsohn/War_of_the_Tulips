@@ -52,6 +52,7 @@ class Game
         bool team;
         int event, selection;
         int bee_score, wasp_score;
+        vector<int> score;
 };
 
 #endif // GAME_H

@@ -21,6 +21,9 @@ Game::Game(string title, int width, int height)
     bee_score = 0;
     wasp_score = 0;
 
+    ball_x = sc_wdth / 2; // These will need to be moved later.
+    ball_y = sc_hth / 2;
+
 
     loop(); // Begin Game.
 }
@@ -172,6 +175,9 @@ void Game::update()
 
     selection = event;
 
+    score = ev.callPoint(sc_wdth, bee_score, wasp_score, ball_x);
+    bee_score = score[0];
+    wasp_score = score[1];
+
     event = ev.callEndGame(bee_score, wasp_score, event);
-    cout << event << endl;
 }
