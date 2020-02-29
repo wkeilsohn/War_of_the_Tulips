@@ -26,11 +26,17 @@ class Events
         Pics p;
         Text txt;
 
+        void getScreenParameters(int sc_hth, int sc_wdth);
+
         // Major game Events:    
-        void callText(int sc_wdth, int sc_hth, SDL_Renderer& render, int event);
-        void showPoint(int sc_wdth, int sc_hth, SDL_Renderer& render, int event, int bee_score, int wasp_score);
-        vector<int> callPoint(int sc_wdth, int bee_score, int wasp_score, int ball_x, int sc_hth, SDL_Renderer& render);
+        void callText(SDL_Renderer& render, int event);
+        void showPoint(SDL_Renderer& render, int event, int bee_score, int wasp_score);
+        vector<int> callPoint(int bee_score, int wasp_score, int ball_x, SDL_Renderer& render);
         int callEndGame(int bee_score, int wasp_score, int event);
+
+
+        private:
+            int sc_hth, sc_wdth;
 
 
 };

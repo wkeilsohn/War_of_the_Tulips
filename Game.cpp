@@ -7,6 +7,7 @@ Game::Game(string title, int width, int height)
     sc_hth = height;
 
     Events ev;
+    AI ai;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(sc_wdth, sc_hth, 0, &win, &ren);
@@ -23,6 +24,7 @@ Game::Game(string title, int width, int height)
 
     ball_x = sc_wdth / 2; // These will need to be moved later.
     ball_y = sc_hth / 2;
+    paddle_speed = sc_hth / 8;
 
 
     loop(); // Begin Game.
@@ -66,6 +68,9 @@ void Game::render()
 {
 
     // Add images to the screen:
+    /// Read Screen:
+    ev.getScreenParameters(sc_hth, sc_wdth);
+    ai.getParams(sc_hth, sc_wdth, paddle_speed);
 
     // /// Adds the background color:
     SDL_RenderClear(ren);
@@ -73,12 +78,12 @@ void Game::render()
 
     
     // /// Adds in the boarder Tulips:
-    ev.p.installTulips(sc_wdth, sc_hth, *ren);
+    ev.p.installTulips(*ren);
 
 
     // /// Decides what to show:
-    ev.callText(sc_wdth, sc_hth, *ren, event);
-    ev.showPoint(sc_wdth, sc_hth, *ren, event, bee_score, wasp_score);
+    ev.callText(*ren, event);
+    ev.showPoint(*ren, event, bee_score, wasp_score);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);
@@ -148,10 +153,10 @@ void Game::input()
                 game_running = false;
                 break;
             case SDLK_UP:
-                player_paddle_x = player_paddle_x + paddle_speed;
+                player_paddle_y = player_paddle_y + paddle_speed;
                 break;
             case SDLK_DOWN:
-                player_paddle_x = player_paddle_x - paddle_speed;
+                player_paddle_y = player_paddle_y - paddle_speed;
             default:
                 break;
             }
@@ -175,7 +180,7 @@ void Game::update()
 
     selection = event;
 
-    score = ev.callPoint(sc_wdth, bee_score, wasp_score, ball_x, sc_hth, *ren);
+    score = ev.callPoint(bee_score, wasp_score, ball_x, *ren);
     bee_score = score[0];
     wasp_score = score[1];
 

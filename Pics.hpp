@@ -18,19 +18,19 @@ class Pics
         Pics();
         ~Pics();
 
-        void installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render);
+        void installTulips(SDL_Renderer& render);
 
         // Opening:
-        void renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render);
+        void renderTitle(SDL_Renderer& render);
 
         // Main Game:
-        void addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render);
-        void addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth);
-        void addPaddels(bool team, int bee_paddle_x, int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_x, int wasp_paddle_y);
+        void addNormalCharacters(SDL_Renderer& render);
+        void addBall(int ball_x, int ball_y, SDL_Renderer& render);
+        void addPaddels(int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_y, int paddle_h);
 
 
         // Event:
-        void Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor);
+        void Victory(SDL_Renderer& render, bool victor);
 
 
         // Etc.:
@@ -38,12 +38,16 @@ class Pics
 
         map<int, string> files;
 
+        void getScreenSize(int sc_hth, int sc_wdth);
+
     private:
         vector<string> images;
         string path1;
 
         vector<string> addons;
         string path2;
+
+        int sc_hth, sc_wdth;
 
 };
 

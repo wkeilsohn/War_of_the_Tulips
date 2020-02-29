@@ -15,7 +15,7 @@ Text::~Text()
     TTF_Quit();
 }
 
-void Text::gameOver(int sc_wdth, int sc_hth, SDL_Renderer& render)
+void Text::gameOver(SDL_Renderer& render)
 {
         int siding = sc_wdth / 6;
         int flooring = sc_hth / 8;
@@ -61,7 +61,7 @@ void Text::gameOver(int sc_wdth, int sc_hth, SDL_Renderer& render)
         SDL_DestroyTexture(game_pt2_text);
 }
 
-void Text::teamSelection(int sc_wdth, int sc_hth, SDL_Renderer& render)
+void Text::teamSelection(SDL_Renderer& render)
 {   
         int siding = sc_wdth / 6;
         int flooring = sc_hth / 8;
@@ -108,7 +108,7 @@ void Text::teamSelection(int sc_wdth, int sc_hth, SDL_Renderer& render)
 
 }
 
-void Text::displayScore(int sc_wdth, int sc_hth, SDL_Renderer& render, int bee_score, int wasp_score)
+void Text::displayScore(SDL_Renderer& render, int bee_score, int wasp_score)
 {
 
         int siding = sc_wdth / 6;
@@ -170,4 +170,10 @@ void Text::displayScore(int sc_wdth, int sc_hth, SDL_Renderer& render, int bee_s
         SDL_DestroyTexture(score_pt1_text);
         SDL_DestroyTexture(bee_score_pt2_text);
         SDL_DestroyTexture(wasp_score_pt2_text);
+}
+
+void Text::getScreenArea(int sc_h, int sc_w)
+{
+        sc_hth = sc_h;
+        sc_wdth = sc_w;
 }

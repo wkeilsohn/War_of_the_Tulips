@@ -12,6 +12,7 @@
 // Reliant Classes
 #include "Events.hpp"
 #include "Text.hpp"
+#include "AI.hpp"
 
 using namespace std;
 
@@ -41,11 +42,11 @@ class Game
 
         // Image Management Variables:
         Events ev;
-        Text txt;
+        AI ai;
 
 
         int ball_x, ball_y;
-        int player_paddle_x, player_paddle_y, enemy_paddle_x, enemy_paddle_y;
+        int player_paddle_y, enemy_paddle_y;
         int paddle_speed;
 
         // Game Playe Management Variables:

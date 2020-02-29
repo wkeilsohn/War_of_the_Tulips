@@ -6,7 +6,7 @@ Pics::Pics()
 
 
     path1 = "Images/Drawn/"; // Correct Address!
-    images = {"Title.png", "Bee1.png", "Bee2.png", "Bee3.png", "Grub.png", "Tulip1.png", "Wasp.png", "Wasp2.png", "Wasp3.png", "Top_Flowers.png", "Bottom_Flowers.png"};
+    images = {"Title.png", "Bee1.png", "Bee2.png", "Bee3.png", "Grub.png", "Tulip1.png", "Wasp.png", "Wasp2.png", "Wasp3.png", "Top_Flowers.png", "Bottom_Flowers.png", "Bee_paddle.png", "Wasp_paddle.png"};
 
     int index = 0;
 
@@ -36,7 +36,7 @@ Pics::~Pics()
     IMG_Quit();
 }
 
-void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
+void Pics::installTulips(SDL_Renderer& render)
 {
 
     int h_quater = sc_hth / 8;
@@ -66,7 +66,7 @@ void Pics::installTulips(int sc_wdth, int sc_hth, SDL_Renderer& render)
 
 }
 
-void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
+void Pics::renderTitle(SDL_Renderer& render)
 {
 
     int mid_hth = sc_hth / 8;
@@ -83,7 +83,7 @@ void Pics::renderTitle(int sc_wdth, int sc_hth, SDL_Renderer& render)
     SDL_RenderCopy(&render, title_text, NULL, &title);
 }
 
-void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
+void Pics::addNormalCharacters(SDL_Renderer& render)
 {
     int lft_thrd = sc_wdth / 6;
     int rgt_thrd = sc_wdth - lft_thrd;
@@ -113,8 +113,9 @@ void Pics::addNormalCharacters(int sc_wdth, int sc_hth, SDL_Renderer& render)
     SDL_RenderCopy(&render, wasp_text, NULL, &wasp_rect);
 }
 
-void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
+void Pics::Victory(SDL_Renderer& render, bool victor)
 {
+
     int lft_thrd = sc_wdth / 6;
     int rgt_thrd = sc_wdth - lft_thrd;
 
@@ -156,12 +157,12 @@ void Pics::Victory(int sc_wdth, int sc_hth, SDL_Renderer& render, bool victor)
 
 void Pics::createBackground(SDL_Renderer& render)
 {
-    SDL_Surface* back_surf = IMG_Load(files[11].c_str());
+    SDL_Surface* back_surf = IMG_Load(files[13].c_str());
     SDL_Texture* back_text = SDL_CreateTextureFromSurface(&render, back_surf);
     SDL_RenderCopy(&render, back_text, NULL, NULL); 
 }
 
-void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, int sc_hth)
+void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     float ratio = (float)sc_hth / (float)sc_wdth;
     int size = 30;
@@ -187,4 +188,45 @@ void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render, int sc_wdth, in
     SDL_Surface* ball_surface = IMG_Load(files[4].c_str());
     SDL_Texture* ball_text = SDL_CreateTextureFromSurface(&render, ball_surface);
     SDL_RenderCopy(&render, ball_text, NULL, &ball);
+}
+
+void Pics::addPaddels(int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_y, int paddle_h)
+{
+
+    int paddle_w = 2 * paddle_h;
+
+    int bee_x = (sc_wdth / 6) + (paddle_w / 2);
+    int wasp_x = (sc_wdth - bee_x) - (1.5 * paddle_w);
+
+    
+
+
+    SDL_Rect wasp_paddle;
+    wasp_paddle.x = wasp_x;
+    wasp_paddle.y = wasp_paddle_y;
+    wasp_paddle.w = paddle_w;
+    wasp_paddle.h = paddle_h;
+
+    SDL_Rect bee_paddle;
+    bee_paddle.x = bee_x;
+    bee_paddle.y = bee_paddle_y;
+    bee_paddle.w = paddle_w;
+    bee_paddle.h = paddle_h;
+
+    SDL_Surface* bee_paddle_surf = IMG_Load(files[11].c_str());
+    SDL_Surface* wasp_paddle_surf = IMG_Load(files[12].c_str());
+
+    SDL_Texture* bee_text = SDL_CreateTextureFromSurface(&render, bee_paddle_surf);
+    SDL_Texture* wasp_text = SDL_CreateTextureFromSurface(&render, wasp_paddle_surf);
+
+    SDL_RenderCopy(&render, bee_text, NULL, &bee_paddle);
+    SDL_RenderCopy(&render, wasp_text, NULL, &wasp_paddle);
+
+}
+
+void Pics::getScreenSize(int sc_h, int sc_w)
+{
+    sc_hth = sc_h;
+    sc_wdth = sc_w;
+
 }

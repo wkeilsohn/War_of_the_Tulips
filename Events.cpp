@@ -11,29 +11,29 @@ Events::~Events()
     // End Game.
 }
 
-void Events::callText(int sc_wdth, int sc_hth, SDL_Renderer& render, int event)
+void Events::callText(SDL_Renderer& render, int event)
 {
     if(event != 0)
     {
-        p.addNormalCharacters(sc_wdth, sc_hth, render);
+        p.addNormalCharacters(render);
         switch (event)
         {
         case 1:
-            txt.teamSelection(sc_wdth, sc_hth, render);
+            txt.teamSelection(render);
             break;
         case 3:
-            txt.gameOver(sc_wdth, sc_hth, render); 
+            txt.gameOver(render); 
         default:
             break;
         }
     }else
     {
-        p.renderTitle(sc_wdth, sc_hth, render);
+        p.renderTitle(render);
     }
     
 }
 
-vector<int> Events::callPoint(int sc_wdth, int bee_score, int wasp_score, int ball_x, int sc_hth, SDL_Renderer& render)
+vector<int> Events::callPoint(int bee_score, int wasp_score, int ball_x, SDL_Renderer& render)
 {
 
     int side_1 = sc_wdth / 8;
@@ -46,11 +46,11 @@ vector<int> Events::callPoint(int sc_wdth, int bee_score, int wasp_score, int ba
     {
         bee_score++;
         victor = true;
-        p.Victory(sc_wdth, sc_hth, render, victor);
+        p.Victory(render, victor);
     }else if(ball_x >= side_2)
     {
         wasp_score++;
-        p.Victory(sc_wdth, sc_hth, render, victor);
+        p.Victory(render, victor);
     }else
     {
         bee_score = bee_score;
@@ -74,10 +74,19 @@ int Events::callEndGame(int bee_score, int wasp_score, int event)
     }
 }
 
-void Events::showPoint(int sc_wdth, int sc_hth, SDL_Renderer& render, int event, int bee_score, int wasp_score)
+void Events::showPoint(SDL_Renderer& render, int event, int bee_score, int wasp_score)
 {
     if(event >= 2)
     {
-        txt.displayScore(sc_wdth, sc_hth, render, bee_score, wasp_score);
+        txt.displayScore(render, bee_score, wasp_score);
     }
+}
+
+void Events::getScreenParameters(int sc_h, int sc_w)
+{
+    sc_wdth = sc_w;
+    sc_hth = sc_h;
+
+    txt.getScreenArea(sc_hth, sc_wdth);
+    p.getScreenSize(sc_hth, sc_wdth);
 }
