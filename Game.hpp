@@ -46,14 +46,17 @@ class Game
 
 
         int ball_x, ball_y;
-        int player_paddle_y, enemy_paddle_y;
-        int paddle_speed;
+        int paddle_speed, speed;
 
-        // Game Playe Management Variables:
+        // Game Play Management Variables:
         bool team;
         int event, selection;
         int bee_score, wasp_score;
         vector<int> score;
+
+        int bee_paddle_y, wasp_paddle_y;
+        int player_paddle_y;
+        vector<int> paddle_ball;
 };
 
 #endif // GAME_H

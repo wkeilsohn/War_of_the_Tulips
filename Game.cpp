@@ -26,6 +26,7 @@ Game::Game(string title, int width, int height)
     ball_y = sc_hth / 2;
     paddle_speed = sc_hth / 8;
 
+    player_paddle_y = (sc_hth / 2) - (sc_hth / 8);
 
     loop(); // Begin Game.
 }
@@ -70,7 +71,7 @@ void Game::render()
     // Add images to the screen:
     /// Read Screen:
     ev.getScreenParameters(sc_hth, sc_wdth);
-    ai.getParams(sc_hth, sc_wdth, paddle_speed);
+    ai.getParams(sc_hth, sc_wdth, paddle_speed, team, event, bee_paddle_y, wasp_paddle_y, ball_x, ball_y);
 
     // /// Adds the background color:
     SDL_RenderClear(ren);
@@ -84,6 +85,9 @@ void Game::render()
     // /// Decides what to show:
     ev.callText(*ren, event);
     ev.showPoint(*ren, event, bee_score, wasp_score);
+
+    // /// Add Paddels and Ball:
+    ai.playBall(*ren, ball_x, ball_y, player_paddle_y);
 
     // /// Push images to screen:
     SDL_RenderPresent(ren);
@@ -177,6 +181,13 @@ void Game::update()
     {
         event = event;
     }
+
+    paddle_ball = ai.paddle_ball_loc;
+    bee_paddle_y = paddle_ball[0];
+    wasp_paddle_y = paddle_ball[1];
+    player_paddle_y = paddle_ball[2];
+    ball_x = paddle_ball[3];
+    ball_y = paddle_ball[4];
 
     selection = event;
 

@@ -34,7 +34,7 @@ int AI::checkPaddle(int y)
     }
 }
 
-void AI::getParams(int sc_h, int sc_w, int speed)
+void AI::getParams(int sc_h, int sc_w, int speed, bool team, int event, int bee_y, int wasp_y, int ball_x, int ball_y)
 {
     sc_hth = sc_h;
     sc_wdth = sc_w;
@@ -46,25 +46,41 @@ void AI::getParams(int sc_h, int sc_w, int speed)
 
     paddle_speed = speed;
 
+    team = team;
+    event = event;
+
+    wasp_y = wasp_y;
+    bee_y = bee_y;
+
+    ball_speed = speed * (sc_wdth / sc_hth);
+
+    last_ball_pos = {ball_x, ball_y};
+
 }
 
-vector<int> AI::movePaddles(bool team, int bee_y, int wasp_y, SDL_Renderer& render)
+vector<int> AI::movePaddles(SDL_Renderer& render, int player_paddle_y)
 {
     vector<int> paddle_values;
 
     if(team)
     {
+        bee_y = player_paddle_y;
         bee_y = checkPaddle(bee_y);
+        player_paddle_y = bee_y;
+
         wasp_y = moveEnemyPaddle(wasp_y);
         p.addPaddels(bee_y, render, wasp_y, paddle_h);
     }else
     {
+        wasp_y = player_paddle_y;
         wasp_y = checkPaddle(wasp_y);
+        player_paddle_y = wasp_y;
+
         bee_y = moveEnemyPaddle(bee_y);
         p.addPaddels(bee_y, render, wasp_y, paddle_h);
     }
 
-    paddle_values = {bee_y, wasp_y};
+    paddle_values = {bee_y, wasp_y, player_paddle_y};
 
     return paddle_values;
 }
@@ -98,3 +114,68 @@ int AI::moveEnemyPaddle(int y)
     }
 }
 
+void AI::checkCollision(int ball_x)
+{
+    /// Define this function ///
+}
+
+vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
+{
+    vector<int> ball_pos;
+
+    int vert_dis = last_ball_pos[0] - ball_x;
+    int horz_dis = last_ball_pos[1] - ball_y;
+
+    if((vert_dis > 0) && (ball_y - ball_speed <= (sc_hth / 8)))
+    {
+        ball_y = ball_y - ball_speed;
+    }else if(vert_dis > 0)
+    {
+        ball_y = ball_y + ball_speed;
+    }else if((vert_dis < 0) && (ball_y + ball_speed >= (sc_hth / 8)))
+    {
+        ball_y = ball_y + ball_speed;
+    }else
+    {
+        ball_y = ball_y - ball_speed;
+    }
+
+    /// Conditional function for collision. ///
+
+    if(horz_dis > 0)
+    {
+        ball_x = ball_x + ball_speed;
+    }else
+    {
+        ball_x = ball_x - ball_speed;
+    }
+    
+    ball_pos = {ball_x, ball_y};
+
+    return ball_pos;
+
+}
+
+
+void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddle_y)
+{
+    vector<int> paddle_loc;
+    vector<int> ball_loc;
+    vector<int> paddle_ball_l;
+
+    if(event == 2)
+    {
+        paddle_loc = movePaddles(render, player_paddle_y);
+        ball_loc = moveBall(ball_x, ball_y, render);
+
+        paddle_ball_l.insert(paddle_ball_l.end(), paddle_loc.begin(), paddle_loc.end());
+        paddle_ball_l.insert(paddle_ball_l.end(), ball_loc.begin(), ball_loc.end());
+
+        paddle_ball_loc = paddle_ball_l;
+    }else
+    {
+        paddle_ball_loc = paddle_ball_loc;
+    }
+    
+
+}
