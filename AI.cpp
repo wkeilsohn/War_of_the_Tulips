@@ -198,7 +198,8 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
         paddle_ball_loc = paddle_ball_l;
     }else
     {
-        paddle_ball_loc = paddle_ball_loc;
+        vector<int> filler(5, 0);
+        paddle_ball_loc = filler;
     }
     
 
