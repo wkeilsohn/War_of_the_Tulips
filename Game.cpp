@@ -183,7 +183,6 @@ void Game::update()
     }
 
     paddle_ball = ai.paddle_ball_loc;
-//    cout << paddle_ball[0] << endl;
     bee_paddle_y = paddle_ball[0];
     wasp_paddle_y = paddle_ball[1];
     player_paddle_y = paddle_ball[2];

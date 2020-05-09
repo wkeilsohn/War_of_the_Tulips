@@ -187,12 +187,12 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
     vector<int> ball_loc;
     vector<int> paddle_ball_l;
 
-    cout << event << endl;
-
     if(event == 2) 
     {
         paddle_loc = movePaddles(render, player_paddle_y);
+
         ball_loc = moveBall(ball_x, ball_y, render);
+        p.addBall(ball_loc[0], ball_loc[1], render);
 
         paddle_ball_l.insert(paddle_ball_l.end(), paddle_loc.begin(), paddle_loc.end());
         paddle_ball_l.insert(paddle_ball_l.end(), ball_loc.begin(), ball_loc.end());
