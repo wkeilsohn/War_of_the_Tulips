@@ -54,8 +54,7 @@ void Game::loop()
 
         render();
         input();
-        update(); // <- Issue in this function.
-        cout << "Success!" << endl;
+        update();
 
         if(event > 3)
         {
@@ -182,16 +181,14 @@ void Game::update()
     {
         event = event;
     }
-    cout << "1" << endl;
 
-    paddle_ball = ai.paddle_ball_loc; // <- Here!
+    paddle_ball = ai.paddle_ball_loc;
+//    cout << paddle_ball[0] << endl;
     bee_paddle_y = paddle_ball[0];
     wasp_paddle_y = paddle_ball[1];
     player_paddle_y = paddle_ball[2];
     ball_x = paddle_ball[3];
     ball_y = paddle_ball[4];
-
-    cout << "2" << endl;
 
     selection = event;
 

@@ -34,7 +34,7 @@ int AI::checkPaddle(int y)
     }
 }
 
-void AI::getParams(int sc_h, int sc_w, int speed, bool team, int event, int bee_y, int wasp_y, int ball_x, int ball_y)
+void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y, int b_x, int bl_y)
 {
     sc_hth = sc_h;
     sc_wdth = sc_w;
@@ -44,17 +44,17 @@ void AI::getParams(int sc_h, int sc_w, int speed, bool team, int event, int bee_
     max_y = sc_hth / 8;
     min_y = (sc_hth / 8) * 7;
 
-    paddle_speed = speed;
+    paddle_speed = spd;
 
-    team = team;
-    event = event;
+    team = tm;
+    event = evt;
 
-    wasp_y = wasp_y;
-    bee_y = bee_y;
+    wasp_y = w_y;
+    bee_y = b_y;
 
-    ball_speed = speed * (sc_wdth / sc_hth);
+    ball_speed = spd * (sc_wdth / sc_hth);
 
-    last_ball_pos = {ball_x, ball_y};
+    last_ball_pos = {b_x, bl_y};
 
 }
 
@@ -187,7 +187,9 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
     vector<int> ball_loc;
     vector<int> paddle_ball_l;
 
-    if(event == 2)
+    cout << event << endl;
+
+    if(event == 2) 
     {
         paddle_loc = movePaddles(render, player_paddle_y);
         ball_loc = moveBall(ball_x, ball_y, render);
@@ -196,9 +198,12 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
         paddle_ball_l.insert(paddle_ball_l.end(), ball_loc.begin(), ball_loc.end());
 
         paddle_ball_loc = paddle_ball_l;
+
+
     }else
     {
-        vector<int> filler(5, 0);
+        int p_y = sc_hth - paddle_h;
+        vector<int> filler = {p_y, p_y, p_y, sc_wdth/2, sc_hth/2};
         paddle_ball_loc = filler;
     }
     
