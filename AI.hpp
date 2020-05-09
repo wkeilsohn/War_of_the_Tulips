@@ -4,6 +4,7 @@
 // General
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 // Project Specific
 #include "Pics.hpp"
@@ -51,6 +52,8 @@ class AI
 
         int bee_y;
         int wasp_y;
+
+        bool ball_dir_x, ball_dir_y;
 };
 
 #endif // AI_H

@@ -69,17 +69,16 @@ vector<int> AI::movePaddles(SDL_Renderer& render, int player_paddle_y)
         player_paddle_y = bee_y;
 
         wasp_y = moveEnemyPaddle(wasp_y);
-        p.addPaddels(bee_y, render, wasp_y, paddle_h);
     }else
     {
         wasp_y = player_paddle_y;
         wasp_y = checkPaddle(wasp_y);
         player_paddle_y = wasp_y;
 
-        bee_y = moveEnemyPaddle(bee_y);
-        p.addPaddels(bee_y, render, wasp_y, paddle_h);
+        bee_y = moveEnemyPaddle(bee_y); 
     }
 
+    p.addPaddels(bee_y, render, wasp_y, paddle_h);
     paddle_values = {bee_y, wasp_y, player_paddle_y};
 
     return paddle_values;
@@ -135,37 +134,38 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     vector<int> ball_pos;
 
-    int vert_dis = last_ball_pos[1] - ball_y;
-    int horz_dis = last_ball_pos[0] - ball_x;
-
-    if((vert_dis > 0) && (ball_y - ball_speed <= (sc_hth / 8)))
-    {
-        ball_y = ball_y - ball_speed;
-    }else if(vert_dis > 0)
+    if(ball_y <= (2 * (sc_hth / 8)))
     {
         ball_y = ball_y + ball_speed;
-    }else if((vert_dis < 0) && (ball_y + ball_speed >= (sc_hth / 8)))
+        ball_dir_y = false;
+    }else if((ball_y >= (7 * (sc_hth / 8))))
+    {
+        ball_y = ball_y - ball_speed;
+        ball_dir_y = true;
+    }else if(ball_dir_y)
     {
         ball_y = ball_y + ball_speed;
     }else
     {
         ball_y = ball_y - ball_speed;
     }
-
+    
     bool coll = checkCollision(ball_x);
 
     if(coll)
     {
-        if(horz_dis > 0)
+        if(ball_dir_x)
         {
             ball_x = ball_x - ball_speed;
+            ball_dir_x = false;
         }else
         {
             ball_x = ball_x + ball_speed;
+            ball_dir_x = true;
         }
     }else
     {
-        if(horz_dis > 0)
+        if(ball_dir_x)
         {
             ball_x = ball_x + ball_speed;
         }else
@@ -187,6 +187,20 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
     vector<int> ball_loc;
     vector<int> paddle_ball_l;
 
+    if(event == 1)
+    {
+        srand(time(0));
+        int r_val = rand() % 2;
+
+        if(r_val < 0.5)
+        {
+            ball_dir_x = true;
+        }else
+        {
+            ball_dir_x = false;
+        }
+    }
+    
     if(event == 2) 
     {
         paddle_loc = movePaddles(render, player_paddle_y);
@@ -198,7 +212,6 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
         paddle_ball_l.insert(paddle_ball_l.end(), ball_loc.begin(), ball_loc.end());
 
         paddle_ball_loc = paddle_ball_l;
-
 
     }else
     {
