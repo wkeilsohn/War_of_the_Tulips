@@ -40,6 +40,8 @@ class Pics
 
         void getScreenSize(int sc_hth, int sc_wdth);
 
+        int correctHeight(int ht);
+
     private:
         vector<string> images;
         string path1;

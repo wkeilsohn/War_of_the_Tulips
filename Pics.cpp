@@ -165,7 +165,7 @@ void Pics::createBackground(SDL_Renderer& render)
 void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     float ratio = (float)sc_hth / (float)sc_wdth;
-    int size = 1000;
+    int size = 45;
     
     int size_w = sc_wdth / size;
     int size_h = sc_hth / size;
@@ -177,7 +177,6 @@ void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
     {
         size_h = size_h / ratio;
     }
-    
 
     SDL_Rect ball;
     ball.x = ball_x;
@@ -192,14 +191,11 @@ void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
 
 void Pics::addPaddels(int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_y, int paddle_h)
 {
-
-    int paddle_w = 2 * paddle_h;
-
-    int bee_x = (sc_wdth / 6) + (paddle_w / 2);
-    int wasp_x = (sc_wdth - bee_x) - (1.5 * paddle_w);
-
-    
-
+    int edge_w = sc_wdth / 6;
+    int paddle_w = edge_w / 6;
+    int spc = paddle_w / 2;
+    int bee_x = edge_w + spc;
+    int wasp_x = (sc_wdth - edge_w) - (paddle_w + spc);
 
     SDL_Rect wasp_paddle;
     wasp_paddle.x = wasp_x;
@@ -221,7 +217,6 @@ void Pics::addPaddels(int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_y,
 
     SDL_RenderCopy(&render, bee_text, NULL, &bee_paddle);
     SDL_RenderCopy(&render, wasp_text, NULL, &wasp_paddle);
-
 }
 
 void Pics::getScreenSize(int sc_h, int sc_w)

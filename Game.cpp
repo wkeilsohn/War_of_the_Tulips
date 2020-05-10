@@ -22,8 +22,6 @@ Game::Game(string title, int width, int height)
     bee_score = 0;
     wasp_score = 0;
 
-    ball_x = sc_wdth / 2; // These will need to be moved later.
-    ball_y = sc_hth / 2;
     paddle_speed = sc_hth / 8;
 
     player_paddle_y = (sc_hth / 2) - (sc_hth / 8);
@@ -71,7 +69,7 @@ void Game::render()
     // Add images to the screen:
     /// Read Screen:
     ev.getScreenParameters(sc_hth, sc_wdth);
-    ai.getParams(sc_hth, sc_wdth, paddle_speed, team, event, bee_paddle_y, wasp_paddle_y, ball_x, ball_y);
+    ai.getParams(sc_hth, sc_wdth, paddle_speed, team, event, bee_paddle_y, wasp_paddle_y);
 
     // /// Adds the background color:
     SDL_RenderClear(ren);
@@ -124,10 +122,7 @@ void Game::input()
                 break;
             case SDLK_f:
                 SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP);
-                SDL_DisplayMode D;
-                SDL_GetCurrentDisplayMode(0, &D);
-                sc_wdth = D.w;
-                sc_hth = D.h;
+                SDL_GetWindowSize(win, &sc_wdth, &sc_hth);
                 break;
             case SDLK_SPACE:
                 event++; // You can quit the game (in addition to passing the title) by hitting the space bar.

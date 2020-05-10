@@ -31,7 +31,7 @@ class AI
         vector<int> paddle_ball_loc;
 
         // Additional Functions:
-        void getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y, int b_x, int bl_y);
+        void getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y);
 
     private:
         Pics p;
@@ -45,7 +45,6 @@ class AI
         bool paddle_dir;
 
         int ball_speed;
-        vector<int> last_ball_pos;
 
         bool team;
         int event;

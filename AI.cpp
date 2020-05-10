@@ -14,9 +14,9 @@ AI::~AI()
 
 int AI::checkPaddle(int y)
 {   
-    if(y > max_y)
+    if(y >= max_y)
     {
-        if((y + paddle_h) < min_y)
+        if((y + paddle_h) <= min_y)
         {
             return y;
         }else
@@ -24,7 +24,7 @@ int AI::checkPaddle(int y)
             y = y - paddle_speed;
             y = checkPaddle(y);
         }
-    }else if(y < max_y)
+    }else if(y > max_y)
     {
         y = y + paddle_speed;
         y = checkPaddle(y);
@@ -34,15 +34,15 @@ int AI::checkPaddle(int y)
     }
 }
 
-void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y, int b_x, int bl_y)
+void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y)
 {
     sc_hth = sc_h;
     sc_wdth = sc_w;
 
     paddle_h = sc_hth / 8;
 
-    max_y = sc_hth / 8;
-    min_y = (sc_hth / 8) * 7;
+    max_y = sc_hth / 4;
+    min_y = (sc_hth / 4) * 3;
 
     paddle_speed = spd;
 
@@ -52,11 +52,7 @@ void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w
     wasp_y = w_y;
     bee_y = b_y;
 
-///    ball_speed = spd * (sc_wdth / sc_hth);
     ball_speed = spd;
-
-    last_ball_pos = {b_x, bl_y};
-
 }
 
 vector<int> AI::movePaddles(SDL_Renderer& render, int player_paddle_y)
@@ -135,8 +131,6 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     vector<int> ball_pos;
 
-    cout << ball_dir_y << endl;
-
     if(ball_y <= (sc_hth / 4))
     {
         ball_y = ball_y + ball_speed;
@@ -190,6 +184,8 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
     vector<int> ball_loc;
     vector<int> paddle_ball_l;
 
+    p.getScreenSize(sc_hth, sc_wdth);
+
     if(event == 1)
     {
         srand(time(0));
@@ -218,7 +214,7 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
 
     }else
     {
-        int p_y = sc_hth - paddle_h;
+        int p_y = (sc_hth / 2) - (paddle_h / 2);
         vector<int> filler = {p_y, p_y, p_y, sc_wdth/2, sc_hth/2};
         paddle_ball_loc = filler;
     }
