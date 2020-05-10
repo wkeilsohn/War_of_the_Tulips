@@ -52,7 +52,8 @@ void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w
     wasp_y = w_y;
     bee_y = b_y;
 
-    ball_speed = spd * (sc_wdth / sc_hth);
+///    ball_speed = spd * (sc_wdth / sc_hth);
+    ball_speed = spd;
 
     last_ball_pos = {b_x, bl_y};
 
@@ -134,14 +135,16 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     vector<int> ball_pos;
 
-    if(ball_y <= (2 * (sc_hth / 8)))
+    cout << ball_dir_y << endl;
+
+    if(ball_y <= (sc_hth / 4))
     {
         ball_y = ball_y + ball_speed;
-        ball_dir_y = false;
-    }else if((ball_y >= (7 * (sc_hth / 8))))
+        ball_dir_y = true;
+    }else if(ball_y >= (3 * (sc_hth / 4)))
     {
         ball_y = ball_y - ball_speed;
-        ball_dir_y = true;
+        ball_dir_y = false;
     }else if(ball_dir_y)
     {
         ball_y = ball_y + ball_speed;
@@ -157,11 +160,11 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
         if(ball_dir_x)
         {
             ball_x = ball_x - ball_speed;
-            ball_dir_x = false;
+            ball_dir_x = true;
         }else
         {
             ball_x = ball_x + ball_speed;
-            ball_dir_x = true;
+            ball_dir_x = false;
         }
     }else
     {

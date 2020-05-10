@@ -165,7 +165,7 @@ void Pics::createBackground(SDL_Renderer& render)
 void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
 {
     float ratio = (float)sc_hth / (float)sc_wdth;
-    int size = 1000; /// Fix this math later!
+    int size = 1000;
     
     int size_w = sc_wdth / size;
     int size_h = sc_hth / size;
