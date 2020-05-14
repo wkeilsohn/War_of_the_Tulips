@@ -55,7 +55,7 @@ class Game
         vector<int> score;
 
         int bee_paddle_y, wasp_paddle_y;
-        int player_paddle_y;
+        int player_paddle_y, tmp_player_paddle_y;
         vector<int> paddle_ball;
 };
 

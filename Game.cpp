@@ -25,6 +25,7 @@ Game::Game(string title, int width, int height)
     paddle_speed = sc_hth / 8;
 
     player_paddle_y = (sc_hth / 2) - (sc_hth / 8);
+    tmp_player_paddle_y = 0;
 
     loop(); // Begin Game.
 }
@@ -152,10 +153,10 @@ void Game::input()
                 game_running = false;
                 break;
             case SDLK_UP:
-                player_paddle_y = player_paddle_y + paddle_speed;
+                tmp_player_paddle_y = 0 - paddle_speed; // Inverted axis.
                 break;
             case SDLK_DOWN:
-                player_paddle_y = player_paddle_y - paddle_speed;
+                tmp_player_paddle_y = 0 + paddle_speed;
             default:
                 break;
             }
@@ -180,7 +181,7 @@ void Game::update()
     paddle_ball = ai.paddle_ball_loc;
     bee_paddle_y = paddle_ball[0];
     wasp_paddle_y = paddle_ball[1];
-    player_paddle_y = paddle_ball[2];
+    player_paddle_y = paddle_ball[2] + tmp_player_paddle_y;
     ball_x = paddle_ball[3];
     ball_y = paddle_ball[4];
 

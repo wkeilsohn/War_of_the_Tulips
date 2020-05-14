@@ -21,17 +21,15 @@ int AI::checkPaddle(int y)
             return y;
         }else
         {
-            y = y - paddle_speed;
-            y = checkPaddle(y);
+            y = min_y - paddle_h;
+            return y;
         }
-    }else if(y > max_y)
-    {
-        y = y + paddle_speed;
-        y = checkPaddle(y);
     }else
     {
+        y = max_y;
         return y;
     }
+    
 }
 
 void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y)
@@ -58,25 +56,24 @@ void AI::getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w
 vector<int> AI::movePaddles(SDL_Renderer& render, int player_paddle_y)
 {
     vector<int> paddle_values;
+    int pp_y;
 
     if(team)
     {
-        bee_y = player_paddle_y;
-        bee_y = checkPaddle(bee_y);
-        player_paddle_y = bee_y;
+        bee_y = checkPaddle(player_paddle_y);
+        pp_y = bee_y;
 
         wasp_y = moveEnemyPaddle(wasp_y);
     }else
     {
-        wasp_y = player_paddle_y;
-        wasp_y = checkPaddle(wasp_y);
-        player_paddle_y = wasp_y;
+        wasp_y = checkPaddle(player_paddle_y);
+        pp_y = wasp_y;
 
         bee_y = moveEnemyPaddle(bee_y); 
     }
 
     p.addPaddels(bee_y, render, wasp_y, paddle_h);
-    paddle_values = {bee_y, wasp_y, player_paddle_y};
+    paddle_values = {bee_y, wasp_y, pp_y};
 
     return paddle_values;
 }
@@ -88,11 +85,11 @@ int AI::moveEnemyPaddle(int y)
         y = y + paddle_speed;
         if(y == checkPaddle(y))
         {
-            paddle_dir = false;
             return y;
         }else
         {
             y = checkPaddle(y);
+            paddle_dir = false;
             return y;
         }
     }else
@@ -100,11 +97,11 @@ int AI::moveEnemyPaddle(int y)
         y = y - paddle_speed;
         if(y == checkPaddle(y))
         {
-            paddle_dir = true;
             return y;
         }else
         {
             y = checkPaddle(y);
+            paddle_dir = true;
             return y;
         }
     }
@@ -218,6 +215,4 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
         vector<int> filler = {p_y, p_y, p_y, sc_wdth/2, sc_hth/2};
         paddle_ball_loc = filler;
     }
-    
-
 }
