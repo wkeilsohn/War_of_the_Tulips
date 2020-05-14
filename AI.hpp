@@ -25,7 +25,7 @@ class AI
         int moveEnemyPaddle(int y);
         int checkPaddle(int y);
 
-        bool checkCollision(int ball_x);
+        bool checkCollision(int ball_x, int ball_y);
         
         void playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddle_y);
         vector<int> paddle_ball_loc;
