@@ -107,7 +107,7 @@ int AI::moveEnemyPaddle(int y)
     }
 }
 
-bool AI::checkCollision(int ball_x, int ball_y)
+bool AI::checkCollision(int ball_x, int ball_y) // TBH, it is a little hard to tell if this works. (come back and check later(?))
 {
     int bee_bottom = bee_y + paddle_h;
     int wasp_bottom = wasp_y + paddle_h;
@@ -118,28 +118,36 @@ bool AI::checkCollision(int ball_x, int ball_y)
     int bee_x = edge_w + spc;
     int wasp_x = (sc_wdth - edge_w) - (paddle_w + spc);
 
-    if(ball_x >= bee_x && ball_x <= (bee_x + paddle_w))
+    int ball_h = ball_y + p.ball_l;
+    int ball_l = ball_x + p.ball_w;
+
+    for(int i = ball_x; i <= ball_l; i++)
     {
-        if(ball_y >= bee_y && ball_y <= bee_bottom)
+        for(int j = ball_y; j <= ball_h; j++)
         {
-            return true;
-        }else
-        {
-            return false;
-        }     
-    }else if(ball_x <= wasp_x && ball_x >= (wasp_x + paddle_w))
-    {
-        if(ball_y >= wasp_y && ball_y <= wasp_bottom)
-        {
-            return true;
-        }else
-        {
-            return false;
+            if(i >= bee_x && i <= (bee_x + paddle_w))
+            {
+                if(j >= bee_y && j <= bee_bottom)
+               {
+                    return true;
+                }else
+                {
+                    return false;
+                }     
+            }else if(i <= wasp_x && i >= (wasp_x + paddle_w))
+            {
+                if(j >= wasp_y && j <= wasp_bottom)
+                {
+                    return true;
+                }else
+                {
+                    return false;
+                }
+            }else
+            {
+                return false;
+            }
         }
-        
-    }else
-    {
-        return false;
     }
 }
 
@@ -170,11 +178,11 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
         if(ball_dir_x)
         {
             ball_x = ball_x - ball_speed;
-            ball_dir_x = true;
+            ball_dir_x = false;
         }else
         {
             ball_x = ball_x + ball_speed;
-            ball_dir_x = false;
+            ball_dir_x = true;
         }
     }else
     {

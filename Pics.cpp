@@ -187,6 +187,9 @@ void Pics::addBall(int ball_x, int ball_y, SDL_Renderer& render)
     SDL_Surface* ball_surface = IMG_Load(files[4].c_str());
     SDL_Texture* ball_text = SDL_CreateTextureFromSurface(&render, ball_surface);
     SDL_RenderCopy(&render, ball_text, NULL, &ball);
+
+    ball_l = size_h;
+    ball_w = size_w;
 }
 
 void Pics::addPaddels(int bee_paddle_y, SDL_Renderer& render, int wasp_paddle_y, int paddle_h)

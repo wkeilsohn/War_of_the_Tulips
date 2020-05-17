@@ -42,6 +42,8 @@ class Pics
 
         int correctHeight(int ht);
 
+        int ball_l, ball_w;
+
     private:
         vector<string> images;
         string path1;
