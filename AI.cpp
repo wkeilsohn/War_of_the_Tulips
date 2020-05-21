@@ -118,37 +118,30 @@ bool AI::checkCollision(int ball_x, int ball_y) // TBH, it is a little hard to t
     int bee_x = edge_w + spc;
     int wasp_x = (sc_wdth - edge_w) - (paddle_w + spc);
 
-    int ball_h = ball_y + p.ball_l;
-    int ball_l = ball_x + p.ball_w;
+    int ball_farx = ball_x + p.ball_w;
 
-    for(int i = ball_x; i <= ball_l; i++)
+    if(ball_x > bee_x && ball_x < bee_x + paddle_w)
     {
-        for(int j = ball_y; j <= ball_h; j++)
+        if(ball_y > bee_y && ball_y < bee_y + paddle_h)
         {
-            if(i >= bee_x && i <= (bee_x + paddle_w))
-            {
-                if(j >= bee_y && j <= bee_bottom)
-               {
-                    return true;
-                }else
-                {
-                    return false;
-                }     
-            }else if(i <= wasp_x && i >= (wasp_x + paddle_w))
-            {
-                if(j >= wasp_y && j <= wasp_bottom)
-                {
-                    return true;
-                }else
-                {
-                    return false;
-                }
-            }else
-            {
-                return false;
-            }
+            return true;
+        }else
+        {
+            return false;
         }
-    }
+    }else if((ball_x > wasp_x && ball_x < wasp_x + paddle_w) || (ball_farx > wasp_x && ball_farx < wasp_x + paddle_w))
+    {
+        if(ball_y > wasp_y && ball_y < wasp_y - paddle_h)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }else
+    {
+        return false;
+    }        
 }
 
 vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)

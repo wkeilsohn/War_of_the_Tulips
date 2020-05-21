@@ -120,7 +120,7 @@ void Pics::Victory(SDL_Renderer& render, bool victor)
     int rgt_thrd = sc_wdth - lft_thrd;
 
     int top = sc_hth / 8;
-    int fill_hth = (6 * (sc_hth / 8));
+    int fill_hth = sc_hth - (2 * top);
 
     SDL_Rect bee_rect;
     bee_rect.x = 0;

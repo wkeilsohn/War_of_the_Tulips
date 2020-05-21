@@ -22,7 +22,7 @@ Game::Game(string title, int width, int height)
     bee_score = 0;
     wasp_score = 0;
 
-    paddle_speed = sc_hth / 8;
+    paddle_speed = sc_hth / 16;
 
     player_paddle_y = (sc_hth / 2) - (sc_hth / 8);
     tmp_player_paddle_y = 0;

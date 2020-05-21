@@ -13,6 +13,7 @@
 // Reliant Classes
 #include "Pics.hpp"
 #include "Text.hpp"
+#include "Win.hpp"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ class Events
         // Image Management Public:
         Pics p;
         Text txt;
+        Win w;
 
         void getScreenParameters(int sc_hth, int sc_wdth);
 
@@ -37,6 +39,8 @@ class Events
 
         private:
             int sc_hth, sc_wdth;
+
+            bool winer;
 
 
 };

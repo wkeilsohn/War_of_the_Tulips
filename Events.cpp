@@ -4,6 +4,8 @@ Events::Events()
 {
     Pics p;
     Text txt;
+
+    winer = false;
 }
 
 Events::~Events()
@@ -15,13 +17,26 @@ void Events::callText(SDL_Renderer& render, int event)
 {
     if(event != 0)
     {
-        p.addNormalCharacters(render);
         switch (event)
         {
         case 1:
+            p.addNormalCharacters(render);
             txt.teamSelection(render);
             break;
+        case 2:
+            p.addNormalCharacters(render);
+/*        
+            if(!winer)
+            {
+                p.addNormalCharacters(render); // Puts them in shadows.
+            }else
+            {
+                p.Victory(render, true); // Overlays them.
+            }
+*/ 
+            break;                     
         case 3:
+            p.addNormalCharacters(render);
             txt.gameOver(render); 
         default:
             break;
@@ -47,14 +62,17 @@ vector<int> Events::callPoint(int bee_score, int wasp_score, int ball_x, SDL_Ren
         bee_score++;
         victor = true;
         p.Victory(render, victor);
+        winer = true;
     }else if(ball_x >= side_2)
     {
         wasp_score++;
         p.Victory(render, victor);
+        winer = true;
     }else
     {
         bee_score = bee_score;
         wasp_score = wasp_score;
+        winer = false;
     }
 
     score_vec = {bee_score, wasp_score};
