@@ -107,7 +107,7 @@ int AI::moveEnemyPaddle(int y)
     }
 }
 
-bool AI::checkCollision(int ball_x, int ball_y) // TBH, it is a little hard to tell if this works. (come back and check later(?))
+bool AI::checkCollision(int ball_x, int ball_y) // So this should work, but due to it being called after the paddle/ball has moved it can't actually stop the ball.
 {
     int bee_bottom = bee_y + paddle_h;
     int wasp_bottom = wasp_y + paddle_h;
