@@ -44,6 +44,8 @@ class Pics
 
         int ball_l, ball_w;
 
+        int sc_hth, sc_wdth;
+
     private:
         vector<string> images;
         string path1;
@@ -51,7 +53,7 @@ class Pics
         vector<string> addons;
         string path2;
 
-        int sc_hth, sc_wdth;
+        
 
 };
 

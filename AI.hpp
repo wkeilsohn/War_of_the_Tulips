@@ -33,6 +33,8 @@ class AI
         // Additional Functions:
         void getParams(int sc_h, int sc_w, int spd, bool tm, int evt, int b_y, int w_y);
 
+        vector<int> checkBallLoc(int ball_x, int nall_y);
+
     private:
         Pics p;
 
