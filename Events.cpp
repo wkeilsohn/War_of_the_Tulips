@@ -23,17 +23,15 @@ void Events::callText(SDL_Renderer& render, int event)
             p.addNormalCharacters(render);
             txt.teamSelection(render);
             break;
-        case 2:
-            p.addNormalCharacters(render);
-/*        
+        case 2:        
             if(!winer)
             {
-                p.addNormalCharacters(render); // Puts them in shadows.
+                p.addNormalCharacters(render); // Works.
             }else
             {
-                p.Victory(render, true); // Overlays them.
+                p.Victory(render, true);
             }
-*/ 
+ 
             break;                     
         case 3:
             p.addNormalCharacters(render);
