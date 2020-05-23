@@ -146,8 +146,8 @@ bool AI::checkCollision(int ball_x, int ball_y) // So this should work, but due 
 
 vector<int> AI::checkBallLoc(int ball_x, int ball_y)
 {
-    int side1 = p.sc_wdth / 8;
-    int side2 = side1 * 6;
+    int side1 = p.sc_wdth / 6;
+    int side2 = p.sc_wdth - side1;
 
     if(ball_x < (side1 - 50) || ball_x > (side2 + 50)) // Let it touch the side to score the point.
     {
@@ -192,11 +192,11 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
         if(ball_dir_x)
         {
             ball_x = ball_x - ball_speed;
-            ball_dir_x = true;
+            ball_dir_x = false;
         }else
         {
             ball_x = ball_x + ball_speed;
-            ball_dir_x = false;
+            ball_dir_x = true;
         }
     }else
     {

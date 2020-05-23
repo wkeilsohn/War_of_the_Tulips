@@ -6,6 +6,7 @@ Events::Events()
     Text txt;
 
     winer = false;
+    win_team = false;
 }
 
 Events::~Events()
@@ -29,7 +30,7 @@ void Events::callText(SDL_Renderer& render, int event)
                 p.addNormalCharacters(render); // Works.
             }else
             {
-                p.Victory(render, true);
+                p.Victory(render, win_team);
             }
  
             break;                     
@@ -49,8 +50,8 @@ void Events::callText(SDL_Renderer& render, int event)
 vector<int> Events::callPoint(int bee_score, int wasp_score, int ball_x, SDL_Renderer& render)
 {
 
-    int side_1 = sc_wdth / 8;
-    int side_2 = side_1 * 6;
+    int side_1 = sc_wdth / 6;
+    int side_2 = sc_wdth - side_1;
 
     vector<int> score_vec;
     bool victor = false;
@@ -59,13 +60,13 @@ vector<int> Events::callPoint(int bee_score, int wasp_score, int ball_x, SDL_Ren
     {
         bee_score++;
         victor = true;
-        p.Victory(render, victor);
         winer = true;
+        win_team = false;
     }else if(ball_x >= side_2)
     {
         wasp_score++;
-        p.Victory(render, victor);
         winer = true;
+        win_team = true;
     }else
     {
         bee_score = bee_score;

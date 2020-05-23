@@ -41,6 +41,7 @@ class Events
             int sc_hth, sc_wdth;
 
             bool winer;
+            bool win_team;
 
 
 };

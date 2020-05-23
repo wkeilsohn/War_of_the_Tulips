@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class Win
+class Win // Currently unused class.
 {
     public:
         Win();
