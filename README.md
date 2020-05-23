@@ -14,8 +14,6 @@ Pong-like game depicting the struggle between a bee and a wasp over a tulip.
 - Lazy Foo' Productions
 - "Let's Make a Game" by Avery Reed
 
-
-
 ## Media Notes:
 
 For this project, I initially drew all of the images I intended to use. However, after begining to code, it became obvious that I would need additional materials. Therefore, while I still will not be including my own art (at least not initially) I can not take credit for the art I obtained from additional sources such as Upsplash and other royalty free sites. Please see below for a more exhustive list of media contributions. 
@@ -27,3 +25,7 @@ For this project, I initially drew all of the images I intended to use. However,
 - Scriptina Font by Apostrophic Labs: https://www.1001fonts.com/scriptina-font.html
 
 *Works not listed above were most likely created by me. Please feel free to contact me with any questions.*
+
+## License
+
+For code created by me a general MIT license is applicable. For material created by other artists/creators, please see their relative liscenses' and details. 
