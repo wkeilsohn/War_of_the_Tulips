@@ -21,11 +21,11 @@ class AI
         vector<int> movePaddles(SDL_Renderer& render, int player_paddle_y);
 
         // Gameplay Functions:
-        vector<int> moveBall(int ball_x, int ball_y, SDL_Renderer& render);
+        vector<int> moveBall(vector<int> pads, int ball_x, int ball_y, SDL_Renderer& render);
         int moveEnemyPaddle(int y);
         int checkPaddle(int y);
 
-        bool checkCollision(int ball_x, int ball_y);
+        bool checkCollision(vector<int> pads, int ball_x, int ball_y);
         
         void playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddle_y);
         vector<int> paddle_ball_loc;

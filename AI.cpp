@@ -107,12 +107,12 @@ int AI::moveEnemyPaddle(int y)
     }
 }
 
-bool AI::checkCollision(int ball_x, int ball_y) // So this should work, but due to it being called after the paddle/ball has moved it can't actually stop the ball.
+bool AI::checkCollision(vector<int> pads, int ball_x, int ball_y)
 {
-    int bee_bottom = bee_y + paddle_h;
-    int wasp_bottom = wasp_y + paddle_h;
+    int bee_y = pads[0];
+    int wasp_y = pads[1];
     
-    int edge_w = sc_wdth / 6;
+    int edge_w = p.sc_wdth / 6;
     int paddle_w = edge_w / 6;
     int spc = paddle_w / 2;
     int bee_x = edge_w + spc;
@@ -120,18 +120,18 @@ bool AI::checkCollision(int ball_x, int ball_y) // So this should work, but due 
 
     int ball_farx = ball_x + p.ball_w;
 
-    if(ball_x > bee_x && ball_x < bee_x + paddle_w)
+    if((ball_x > bee_x && ball_x < (bee_x + paddle_w)) || (ball_farx > bee_x && ball_farx < (bee_x + paddle_w)))
     {
-        if(ball_y > bee_y && ball_y < bee_y + paddle_h)
+        if(ball_y > bee_y && ball_y < (bee_y + paddle_h))
         {
             return true;
         }else
         {
             return false;
         }
-    }else if((ball_x > wasp_x && ball_x < wasp_x + paddle_w) || (ball_farx > wasp_x && ball_farx < wasp_x + paddle_w))
+    }else if((ball_x > wasp_x && ball_x < (wasp_x + paddle_w)) || (ball_farx > wasp_x && ball_farx < (wasp_x + paddle_w)))
     {
-        if(ball_y > wasp_y && ball_y < wasp_y - paddle_h)
+        if(ball_y > wasp_y && ball_y < (wasp_y + paddle_h))
         {
             return true;
         }else
@@ -165,7 +165,7 @@ vector<int> AI::checkBallLoc(int ball_x, int ball_y)
     return new_ball_pos;
 }
 
-vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
+vector<int> AI::moveBall(vector<int> pads, int ball_x, int ball_y, SDL_Renderer& render)
 {
     vector<int> ball_pos;
 
@@ -185,19 +185,18 @@ vector<int> AI::moveBall(int ball_x, int ball_y, SDL_Renderer& render)
         ball_y = ball_y - ball_speed;
     }
     
-    bool coll = checkCollision(ball_x, ball_y);
+    bool coll = checkCollision(pads, ball_x, ball_y);
 
     if(coll)
     {
         if(ball_dir_x)
         {
             ball_x = ball_x - ball_speed;
-            ball_dir_x = false;
         }else
         {
             ball_x = ball_x + ball_speed;
-            ball_dir_x = true;
         }
+        ball_dir_x = !ball_dir_x;
     }else
     {
         if(ball_dir_x)
@@ -244,7 +243,7 @@ void AI::playBall(SDL_Renderer& render, int ball_x, int ball_y, int player_paddl
     {
         paddle_loc = movePaddles(render, player_paddle_y);
 
-        ball_loc = moveBall(ball_x, ball_y, render);
+        ball_loc = moveBall(paddle_loc, ball_x, ball_y, render);
         p.addBall(ball_loc[0], ball_loc[1], render);
 
         paddle_ball_l.insert(paddle_ball_l.end(), paddle_loc.begin(), paddle_loc.end());
