@@ -16,7 +16,9 @@ Pong-like game depicting the struggle between a bee and a wasp over a tulip.
 
 ## Media Notes:
 
-For this project, I initially drew all of the images I intended to use. However, after begining to code, it became obvious that I would need additional materials. Therefore, while I still will not be including my own art (at least not initially) I can not take credit for the art I obtained from additional sources such as Upsplash and other royalty free sites. Please see below for a more exhustive list of media contributions. 
+For this project, I initially drew all of the images I intended to use. However, after begining to code, it became obvious that I would need additional materials. These images have finall been uploaed.
+
+Some additional images were needed from thrid pary sites. Please see below for a more exhustive list of media contributions. 
 
 ## Media Contributions:
 
